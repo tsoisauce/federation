@@ -1,8 +1,7 @@
 import graphene
-
 from graphene_django import DjangoObjectType 
 from django.contrib.auth.models import User
-
+from graphene_federation import build_schema, key
 
 class UserType(DjangoObjectType): 
     class Meta:
@@ -51,4 +50,4 @@ class CreateUserMutation(graphene.Mutation):
 class Mutation(graphene.ObjectType):
     create_user = CreateUserMutation.Field()
 
-schema = graphene.Schema(query=Query, mutation=Mutation)
+schema = build_schema(query=Query, mutation=Mutation)

@@ -6,5 +6,19 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "name": "federation",
+  "version": "1.0.0",
+  "description": "Federated services with Apollo GraphQL Federation",
+  "main": "index.js",
+  "repository": "https://github.com/tsoisauce/federation.git",
+  "author": "Kelvin Tsoi <tsoikelvin@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "concurrently \"cd ./services/python && python manage.py runserver\" \"cd ./gateway && yarn start\""
+  },
+  "dependencies": {
+    "concurrently": "^7.5.0"
   }
 }
