@@ -19,12 +19,5 @@
   "private": false,
   "scripts": {
     "start": "concurrently \"cd ./services/python && python manage.py runserver\" \"cd ./gateway && yarn start\" \"cd ./services/node && yarn start:dev\""
-  },
-  "dependencies": {
-    "@nestjs/apollo": "^10.1.4",
-    "@nestjs/graphql": "^10.1.5",
-    "apollo-server-express": "^3.11.1",
-    "graphql": "^16.6.0",
-    "graphql-tools": "^8.3.11"
   }
 }
