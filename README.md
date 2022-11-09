@@ -11,6 +11,7 @@ to start: `yarn start`
 - Gateway (Apollo GraphQL): http://localhost:4000
 - Users (Python Django): http://localhost:8000
 - Products (Node Nest.js): http://localhost:3000
+- Payment (Ruby on Rails): http://localhost:3000
 
 ## Installation
 
