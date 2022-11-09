@@ -10,12 +10,12 @@ class UserType(DjangoObjectType):
 
 
 class Query(graphene.ObjectType):
-    test = graphene.String()
+    test_users = graphene.String()
     all_users = graphene.List(UserType)
     get_user_by_email = graphene.Field(UserType, email=graphene.String())
 
-    def resolve_test(self, info, **kwargs):
-        return "Hello World!"
+    def resolve_test_users(self, info, **kwargs):
+        return "[Users] Hello World!"
 
     def resolve_all_users(self, info, **kwargs):
         return User.objects.all()
