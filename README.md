@@ -6,6 +6,12 @@ Example of federated services utilizing Apoolo Federation 2
 
 Apollo Federation allows us to connect various GraphQL Schema into a unified gateway where all clients can interact with this gateway. This allows easy implimentation of microservices, as long as your service utlizes GraphQL, a unified graph can be created.
 
+to start: `yarn start`
+
+- Gateway (Apollo GraphQL): http://localhost:4000
+- Users (Python Django): http://localhost:8000
+- Products (Node Nest.js): http://localhost:3000
+
 ## Installation
 
 ### Zero setup with remote containers
