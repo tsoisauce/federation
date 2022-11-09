@@ -18,6 +18,6 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "concurrently \"cd ./services/python && python manage.py runserver\" \"cd ./gateway && yarn start\" \"cd ./services/node && yarn start:dev\""
+    "start": "concurrently \"cd ./services/python && python manage.py runserver\" \"cd ./gateway && yarn start\" \"cd ./services/node/nest && yarn start:dev\""
   }
 }
