@@ -1,0 +1,16 @@
+{
+  "name": "federation",
+  "version": "1.0.0",
+  "description": "Microservice orchestration demo",
+  "main": "index.js",
+  "repository": "https://github.com/tsoisauce/federation.git",
+  "author": "Kelvin Tsoi <tsoikelvin@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "commit": "npx cz"
+  },
+  "devDependencies": {
+    "commitizen": "^4.3.1"
+  }
+}
