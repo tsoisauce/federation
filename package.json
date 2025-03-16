@@ -6,9 +6,13 @@
   "repository": "https://github.com/tsoisauce/federation.git",
   "author": "Kelvin Tsoi <tsoikelvin@gmail.com>",
   "license": "MIT",
-  "private": false,
+  "private": true,
+  "workspaces": [
+    "services/*"
+  ],
   "scripts": {
-    "commit": "npx cz"
+    "commit": "npx cz",
+    "start:users-node": "yarn workspace users-node start"
   },
   "devDependencies": {
     "commitizen": "^4.3.1",
