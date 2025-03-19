@@ -2,6 +2,11 @@
 
 module Types
   class QueryType < Types::BaseObject
+    PRODUCTS_DATA = [
+      { id: "1", name: "Product 1", handle: "product-1", sku: "SKU1", description: "Description for product 1", price: 10.99 },
+      { id: "2", name: "Product 2", handle: "product-2", sku: "SKU2", description: "Description for product 2", price: 20.99 },
+      { id: "3", name: "Product 3", handle: "product-3", sku: "SKU3", description: "Description for product 3", price: 30.99 }
+    ]
     field :node, Types::NodeType, null: true, description: "Fetches an object given its ID." do
       argument :id, ID, required: true, description: "ID of the object."
     end
@@ -33,12 +38,16 @@ module Types
     end
 
     def products
-      [
-        { id: "1", name: "Product 1", description: "Description for product 1", price: 10.99 },
-        { id: "2", name: "Product 2", description: "Description for product 2", price: 20.99 },
-        { id: "3", name: "Product 3", description: "Description for product 3", price: 30.99 }
-      ]
+      PRODUCTS_DATA
     end
 
+    field :product, ProductType, null: true do
+      description "Fetch a product by ID"
+      argument :id, ID, required: true, description: "ID of the product"
+    end
+
+    def product(id:)
+      PRODUCTS_DATA.find { |p| p[:id] == id }
+    end
   end
 end

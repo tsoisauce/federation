@@ -30,3 +30,12 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# JetBrains IDE files
+.idea/
+*.iml
+*.iws
+*.ipr
+*.iws
+.idea_modules/
+out/

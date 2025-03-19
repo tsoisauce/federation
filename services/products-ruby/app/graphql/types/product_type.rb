@@ -6,6 +6,8 @@ module Types
 
     field :id, ID, null: false
     field :name, String, null: false
+    field :handle, String, null: false
+    field :sku, String, null: false
     field :description, String, null: true
     field :price, Float, null: false
   end
