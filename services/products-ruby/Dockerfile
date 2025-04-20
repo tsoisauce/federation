@@ -2,8 +2,8 @@
 # check=error=true
 
 # This Dockerfile is designed for production, not development. Use with Kamal or build'n'run by hand:
-# docker build -t products_ruby .
-# docker run -d -p 80:80 -e RAILS_MASTER_KEY=<value from config/master.key> --name products_ruby products_ruby
+# docker build -t product_ruby .
+# docker run -d -p 80:80 -e RAILS_MASTER_KEY=<value from config/master.key> --name product_ruby product_ruby
 
 # For a containerized dev environment, see Dev Containers: https://guides.rubyonrails.org/getting_started_with_devcontainer.html
 

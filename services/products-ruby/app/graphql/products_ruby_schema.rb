@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'apollo-federation'
 
 class ProductsRubySchema < GraphQL::Schema
   include ApolloFederation::Schema
