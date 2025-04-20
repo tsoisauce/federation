@@ -18,30 +18,34 @@ This is a NestJS GraphQL service that manages user information as part of a fede
 ### Installation
 
 1. Install dependencies:
-   ```
-   yarn install
-   ```
 
-2. Start the server:
-   ```
-   yarn start
-   ```
+  ```bash
+  yarn install
+  ```
 
-The service will be available at http://localhost:3000.
-The GraphQL endpoint is available at http://localhost:3000/graphql.
+1. Start the server:
+
+  ```bash
+  yarn start
+  ```
+
+The service will be available at <http://localhost:3000>.
+The GraphQL endpoint is available at <http://localhost:3000/graphql>.
 
 ## Integration with Apollo Federation
 
 This service is designed to be used as part of a federated GraphQL architecture. It exposes a GraphQL API that can be accessed by the Apollo Gateway.
 
 The service is registered with the gateway at:
-```
+
+```graphql
 { name: 'users', url: 'http://localhost:3000/graphql' }
 ```
 
 ## Sample GraphQL Queries
 
 Query all users:
+
 ```graphql
 query {
   users {
@@ -54,6 +58,7 @@ query {
 ```
 
 Query a specific user:
+
 ```graphql
 query {
   user(id: "1") {
@@ -66,6 +71,7 @@ query {
 ```
 
 Query a user by email:
+
 ```graphql
 query {
   userByEmail(email: "johndoe@example.com") {
