@@ -8,6 +8,7 @@ async function startGateway() {
       subgraphs: [
         { name: 'users', url: 'http://localhost:3000/graphql' },
         { name: 'products', url: 'http://localhost:3001/graphql' },
+        { name: 'collections', url: 'http://localhost:3002/graphql' },
       ],
     }),
   });

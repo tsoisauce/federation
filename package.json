@@ -15,9 +15,13 @@
     "commit": "npx cz",
     "start:users": "yarn workspace users-node start",
     "start:products": "cd services/products-ruby && bundle exec rails server",
-    "start:gateway": "wait-on http://localhost:3000/health http://localhost:3001/health && yarn workspace gateway start",
-    "start": "concurrently -k \"yarn start:users\" \"yarn start:products\" \"yarn start:gateway\"",
-    "status": "./scripts/check-services.sh"
+    "start:collections": "cd services/collections-python && ./start.sh",
+    "start:gateway": "wait-on http://localhost:3000/health http://localhost:3001/health http://localhost:3002/health && yarn workspace gateway start",
+    "start": "concurrently -k \"yarn start:users\" \"yarn start:products\" \"yarn start:collections\" \"yarn start:gateway\"",
+    "status": "./scripts/check-services.sh",
+    "install:collections": "cd services/collections-python && ./setup_env.sh",
+    "stop": "./stop-all.sh",
+    "stop:collections": "cd services/collections-python && ./stop.sh"
   },
   "devDependencies": {
     "commitizen": "^4.3.1",
