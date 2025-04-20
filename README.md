@@ -7,6 +7,8 @@ Demonstration of microservice orchestration using Apollo GraphQL
 - `users-node (nest.js)`: manages user data
 - `products-ruby (rails)`: manages product information
 
+Both services share the same SQLite database located at `services/products-ruby/storage/development.sqlite3` for persistent storage.
+
 ## Services Setup
 
 ### Users Service (Node.js)
@@ -59,3 +61,15 @@ yarn start:gateway
 ```
 
 Visit GraphQL Playground: [http://localhost:4000](http://localhost:4000/)
+
+## Checking Service Status
+
+To check the status of all services and test the APIs:
+```
+yarn status
+```
+
+This will:
+1. Verify the health of each service
+2. Test user and product GraphQL queries
+3. Test the federated gateway API

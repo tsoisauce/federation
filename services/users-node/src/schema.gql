@@ -30,9 +30,9 @@ type User {
 }
 
 type Query {
-  getUsers: [User!]!
-  getUserById(id: ID!): User
-  getUserByEmail(email: String!): User
+  users: [User!]!
+  user(id: ID!): User
+  userByEmail(email: String!): User
 }
 
 scalar link__Import

@@ -1,51 +1,30 @@
-import { Resolver, Query, ObjectType, Field, ID, Args } from '@nestjs/graphql';
-
-@ObjectType()
-export class User {
-  @Field(() => ID)
-  id!: string;
-
-  @Field()
-  firstName!: string;
-
-  @Field()
-  lastName!: string;
-
-  @Field()
-  email!: string;
-}
-
-const users: User[] = [
-  {
-    id: '1',
-    firstName: 'John',
-    lastName: 'Doe',
-    email: 'johndoe@example.com',
-  },
-  {
-    id: '2',
-    firstName: 'Jane',
-    lastName: 'Doe',
-    email: 'janedoe@example.com',
-  },
-];
+import { Resolver, Query, Args, ID, ResolveReference } from '@nestjs/graphql';
+import { User } from '../entities/user.entity';
+import { UsersService } from '../services/users.service';
 
 @Resolver(() => User)
 export class UsersResolver {
+  constructor(private usersService: UsersService) {}
+
   @Query(() => [User])
-  getUsers(): User[] {
-    return users;
+  async users(): Promise<User[]> {
+    return this.usersService.findAll();
   }
 
   @Query(() => User, { nullable: true })
-  getUserById(@Args('id', { type: () => ID }) id: string): User | undefined {
-    return users.find((user) => user.id === id);
+  async user(@Args('id', { type: () => ID }) id: string): Promise<User | null> {
+    return this.usersService.findById(id);
   }
 
   @Query(() => User, { nullable: true })
-  getUserByEmail(
+  async userByEmail(
     @Args('email', { type: () => String }) email: string,
-  ): User | undefined {
-    return users.find((user) => user.email === email);
+  ): Promise<User | null> {
+    return this.usersService.findByEmail(email);
+  }
+
+  @ResolveReference()
+  resolveReference(reference: { __typename: string; id: string }): Promise<User | null> {
+    return this.usersService.findById(reference.id);
   }
 }
