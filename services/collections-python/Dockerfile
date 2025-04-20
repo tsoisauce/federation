@@ -16,7 +16,6 @@ RUN pip install Django==5.0.5 \
                 djangorestframework==3.14.0 \
                 "strawberry-graphql==0.214.0" \
                 "strawberry-graphql-django==0.26.0" \
-                "strawberry-graphql-federation==0.56.0" \
                 "graphql-core>=3.2.0,<3.3.0" \
                 asgiref==3.7.2 \
                 python-dotenv==1.0.0 \
