@@ -14,22 +14,26 @@ This service manages collections of products in the federated graph. It's built 
 ### Quick Setup (Recommended)
 
 Use the provided setup script:
-```
+
+```bash
 ./setup_env.sh
 ```
 
 This will:
+
 1. Create a Python virtual environment (.venv)
 2. Upgrade pip in the virtual environment
 3. Install all dependencies correctly with compatible versions
 4. Run database migrations
 
 After running the setup script, start the server with the provided start script:
-```
+
+```bash
 ./start.sh
 ```
 
 This script will:
+
 1. Activate the virtual environment
 2. Set up the Python path correctly
 3. Start the Django server on port 3002
@@ -37,29 +41,34 @@ This script will:
 ### Manual Setup
 
 1. Create and activate a virtual environment:
-   ```
+
+   ```bash
    python -m venv .venv
    source .venv/bin/activate
    ```
 
 2. Upgrade pip:
-   ```
+
+   ```bash
    pip install --upgrade pip
    ```
 
 3. Install dependencies from requirements.txt:
-   ```
+
+   ```bash
    pip install -r requirements.txt
    ```
 
 4. Run migrations:
-   ```
+
+   ```bash
    cd collections_project
    python manage.py migrate
    ```
 
 5. Start the server:
-   ```
+
+   ```bash
    python manage.py runserver 0.0.0.0:3002
    ```
 
