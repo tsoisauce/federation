@@ -6,9 +6,8 @@ Demonstration of microservice orchestration using Apollo GraphQL
 
 - `users-node (nest.js)`: manages user data
 - `products-ruby (rails)`: manages product information
-- `collections-python (django)`: manages collections of products
 
-Both users-node and products-ruby services share the same SQLite database located at `services/products-ruby/storage/development.sqlite3`. The collections-python service uses its own SQLite database.
+Both users-node and products-ruby services share the same SQLite database located at `services/products-ruby/storage/development.sqlite3`. 
 
 ## Services Setup
 
@@ -33,19 +32,6 @@ rails server
 
 Service runs on port 3001.
 
-### Collections Service (Python Django)
-
-```bash
-cd services/collections-python
-# Quick setup (recommended)
-./setup_env.sh
-
-# Start the server with the provided script
-./start.sh
-```
-
-Service runs on port 3002.
-
 ### Gateway
 
 ```bash
@@ -68,8 +54,7 @@ This will:
 
 1. Start the users service
 2. Start the products service
-3. Start the collections service
-4. Start the Apollo Gateway after all services are available
+3. Start the Apollo Gateway after all services are available
 
 Or you can start each service individually:
 
@@ -79,9 +64,6 @@ yarn start:users
 
 # Start the products service
 yarn start:products
-
-# Start the collections service
-yarn start:collections
 
 # Start the gateway (after services are running)
 yarn start:gateway
