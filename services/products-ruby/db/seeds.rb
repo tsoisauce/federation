@@ -6,30 +6,35 @@
 products = [
   {
     name: 'Laptop',
+    handle: 'laptop',
     description: 'High-performance laptop with the latest processor',
     price: 1299.99,
     quantity: 10
   },
   {
     name: 'Smartphone',
+    handle: 'smartphone',
     description: 'Latest smartphone with advanced camera features',
     price: 899.99,
     quantity: 15
   },
   {
     name: 'Headphones',
+    handle: 'headphones',
     description: 'Noise-cancelling wireless headphones',
     price: 249.99,
     quantity: 20
   },
   {
     name: 'Smartwatch',
+    handle: 'smartwatch',
     description: 'Fitness tracker with heart rate monitoring',
     price: 199.99,
     quantity: 12
   },
   {
     name: 'Tablet',
+    handle: 'tablet',
     description: 'Lightweight tablet with high-resolution display',
     price: 499.99,
     quantity: 8

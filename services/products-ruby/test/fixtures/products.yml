@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+laptop:
+  name: Laptop
+  handle: laptop
+  description: A powerful laptop for all your computing needs
+  price: 999.99
+  quantity: 10
+
+smartphone:
+  name: Smartphone
+  handle: smartphone
+  description: The latest smartphone with advanced features
+  price: 699.99
+  quantity: 20
