@@ -1,9 +1,16 @@
 package main
 
 import (
+	"collections-go/graph"
 	"net/http"
 
+	"github.com/99designs/gqlgen/graphql/handler"
+	"github.com/99designs/gqlgen/graphql/handler/extension"
+	"github.com/99designs/gqlgen/graphql/handler/lru"
+	"github.com/99designs/gqlgen/graphql/handler/transport"
+	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/gin-gonic/gin"
+	"github.com/vektah/gqlparser/v2/ast"
 )
 
 func main() {
@@ -12,28 +19,42 @@ func main() {
 	// Environment variable: export GIN_MODE=debug | release | test
 	gin.SetMode(gin.DebugMode)
 
+	// Initialize Gin router
 	router := gin.Default()
 
 	// Set trusted proxies
 	router.SetTrustedProxies([]string{"127.0.0.1"})
 
-	// Set up a simple GET endpoint
-	router.GET("/", func(c *gin.Context) {
-		c.String(http.StatusOK, "Hello, World!")
+	// GraphQL server setup
+	srv := handler.New(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{}}))
+
+	srv.AddTransport(transport.Options{})
+	srv.AddTransport(transport.GET{})
+	srv.AddTransport(transport.POST{})
+
+	srv.SetQueryCache(lru.New[*ast.QueryDocument](1000))
+
+	srv.Use(extension.Introspection{})
+	srv.Use(extension.AutomaticPersistedQuery{
+		Cache: lru.New[string](100),
 	})
 
-	// Health check endpoint
+	// GraphQL Playground endpoint
+	router.GET("/", func(c *gin.Context) {
+			playgroundHandler := playground.Handler("GraphQL playground", "/graphql")
+			playgroundHandler.ServeHTTP(c.Writer, c.Request)
+	})
+
+	// GraphQL API endpoint
+	router.POST("/graphql", func(c *gin.Context) {
+			srv.ServeHTTP(c.Writer, c.Request)
+	})
+
+		// Health check endpoint
 	router.GET("/health", func(c *gin.Context) {
 		c.String(http.StatusOK, "OK")
 	})
-
-	// test json
-	router.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
-		})
-	})
-
+	
 	// Start server
 	router.Run(":3002")
 }
