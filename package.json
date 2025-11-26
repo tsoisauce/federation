@@ -1,0 +1,14 @@
+{
+  "name": "federation",
+  "version": "1.0.0",
+  "description": "Federated microservice demo",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev:users": "cd users && yarn start:dev",
+    "dev:all": "concurrently -n users -c red \"yarn dev:users\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
