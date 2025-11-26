@@ -5,7 +5,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev:users": "cd users && yarn start:dev",
+    "install:all": "cd services/users && yarn",
+    "dev:users": "cd services/users && yarn start:dev",
     "dev:all": "concurrently -n users -c red \"yarn dev:users\""
   },
   "devDependencies": {
