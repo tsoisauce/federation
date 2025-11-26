@@ -35,6 +35,34 @@ This command will:
 2. Wait for the `users` service to be ready.
 3. Start the `gateway`.
 
+## Development
+
+### Commit Messages
+
+This project uses [Commitizen](http://commitizen.github.io/cz-cli/) and [Commitlint](https://commitlint.js.org/) to ensure standardized commit messages.
+
+To create a commit, stage your changes and run:
+
+```bash
+yarn commit
+```
+
+This will prompt you to fill in the required fields for a conventional commit message.
+
+Alternatively, you can run Commitizen manually without installation via npx:
+
+```bash
+npx cz
+```
+
+### Optional: Enforce conventional commits
+
+To enforce conventional commits with Husky + commitlint:
+
+```bash
+yarn add -D @commitlint/cli @commitlint/config-conventional husky
+```
+
 ## Project Structure
 
 - `gateway/`: Apollo Gateway service. Only for local development. Apollo Router will be used in production.

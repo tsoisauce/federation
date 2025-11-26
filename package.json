@@ -11,10 +11,22 @@
     "gateway:dev:wait": "wait-on -v tcp:3001 && cd gateway && yarn dev",
     "users:start": "cd services/users && yarn start",
     "users:dev": "cd services/users && yarn start:dev",
-    "dev:all": "concurrently -k -n \"users,gateway\" -c \"red,blue\" \"yarn users:dev\" \"yarn gateway:dev:wait\""
+    "dev:all": "concurrently -k -n \"users,gateway\" -c \"red,blue\" \"yarn users:dev\" \"yarn gateway:dev:wait\"",
+    "commit": "cz",
+    "prepare": "husky install"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "commitizen": "^4.3.1",
     "concurrently": "^9.2.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^9.1.7",
     "wait-on": "^9.0.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
