@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, ResolveReference } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
 import { CreateUserInput } from './dto/create-user.input';
@@ -31,5 +31,11 @@ export class UsersResolver {
   @Mutation(() => User)
   deleteUser(@Args('id') id: number): User {
     return this.usersService.deleteUser(id);
+  }
+
+  // Federation reference resolver
+  @ResolveReference()
+  resolveReference(reference: { __typename: string; id: number }) {
+    return this.usersService.findOne(reference.id);
   }
 }

@@ -1,2 +1,64 @@
-node_modules
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs - be more explicit
+dist/
+dist
+**/dist/
+**/dist
+build/
+build
+**/build/
+**/build
+out/
+**/out/
+*.tsbuildinfo
+
+# Environment variables
 .env
+.env.local
+.env.*.local
+.env.development
+.env.production
+.env.test
+**/.env
+**/.env.*
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+pnpm-debug.log*
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# Testing
+coverage/
+.nyc_output/
+*.lcov
+
+# Misc
+.cache/
+.temp/
+.tmp/

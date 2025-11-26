@@ -1,26 +1,26 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule,ConfigService } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { ApolloFederationDriver, ApolloFederationDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { UsersModule } from './users/users.module';
+import { ApolloServerPluginInlineTraceDisabled } from '@apollo/server/plugin/disabled';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
-    GraphQLModule.forRootAsync<ApolloDriverConfig>({
-      driver: ApolloDriver,
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
-        autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-        sortSchema: true,
-        playground: config.get('ENVIRONMENT') === 'development',
-        csrfPrevention: {
-          requestHeaders: ['x-apollo-operation-name', 'apollo-require-preflight'],
-        },
-      }),
+    GraphQLModule.forRoot<ApolloFederationDriverConfig>({
+      driver: ApolloFederationDriver,
+      autoSchemaFile: {
+        federation: 2,
+      },
+      sortSchema: true,
+      playground: true,
+      csrfPrevention: false,
+      introspection: true,
+      plugins: [ApolloServerPluginInlineTraceDisabled()],
+      buildSchemaOptions: {
+        orphanedTypes: [],
+      },
     }),
     UsersModule,
   ],

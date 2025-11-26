@@ -4,7 +4,7 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(process.env.PORT ?? 3000);
-  Logger.log(`Users Application is running on: http://localhost:${process.env.PORT ?? 3000}/graphql`)
+  await app.listen(process.env.PORT ?? 3001);
+  Logger.log(`Users Application is running on: http://localhost:${process.env.PORT ?? 3001}/graphql`)
 }
 bootstrap();
