@@ -9,7 +9,7 @@ async function startServer() {
       subgraphs: [
         { 
           name: 'users', 
-          url: 'http://localhost:3001/graphql' 
+          url: process.env.USERS_SERVICE_URL || 'http://localhost:3001/graphql',
         },
       ],
     }),

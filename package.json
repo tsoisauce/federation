@@ -4,16 +4,27 @@
   "description": "Federated microservice demo",
   "main": "index.js",
   "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "gateway",
+    "services/*"
+  ],
   "scripts": {
-    "install:all": "yarn workspaces foreach install",
-    "gateway:start": "cd gateway && yarn start",
-    "gateway:dev": "cd gateway && yarn dev",
-    "gateway:dev:wait": "wait-on -v tcp:3001 && cd gateway && yarn dev",
-    "users:start": "cd services/users && yarn start",
-    "users:dev": "cd services/users && yarn start:dev",
-    "dev:all": "concurrently -k -n \"users,gateway\" -c \"red,blue\" \"yarn users:dev\" \"yarn gateway:dev:wait\"",
+    "install:all": "yarn",
+    "dev": "concurrently -k -n \"users,gateway\" -c \"red,blue\" \"yarn workspace users start:dev\" \"wait-on tcp:3001 && yarn workspace gateway dev\"",
+    "build": "concurrently \"yarn workspace users build\" \"yarn workspace gateway build\"",
     "commit": "cz",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "deploy:up": "yarn deploy:build && yarn deploy:apply",
+    "deploy:down": "kubectl delete -f deploy/",
+    "deploy:build": "eval $(minikube docker-env) && docker build -t users-service:latest ./services/users && docker build -t gateway-service:latest ./gateway",
+    "deploy:apply": "kubectl apply -f deploy/",
+    "deploy:restart": "kubectl rollout restart deployment/users-service deployment/gateway-service",
+    "deploy:status": "kubectl get pods,services",
+    "deploy:logs:users": "kubectl logs -f deployment/users-service",
+    "deploy:logs:gateway": "kubectl logs -f deployment/gateway-service",
+    "deploy:url": "minikube service gateway-service --url",
+    "deploy:stop": "minikube stop"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.1.0",
