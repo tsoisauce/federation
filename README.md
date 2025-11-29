@@ -6,8 +6,10 @@ A demonstration of microservices architecture using Apollo Federation.
 
 This project implements a federated GraphQL architecture consisting of:
 - **Gateway**: An Apollo Gateway that acts as the single entry point (Supergraph).
-- **Subgraphs**: Independent services that compose the supergraph.
+- **Services**: Independent services that compose the supergraph.
   - `users`: Manages user data and authentication.
+- **Clients**: Frontend applications consuming the supergraph.
+  - `next`: A Next.js application.
 
 ## Prerequisites
 
@@ -34,6 +36,7 @@ This command will:
 1. Start the `users` subgraph.
 2. Wait for the `users` service to be ready.
 3. Start the `gateway`.
+4. Start the `next` client.
 
 ## Development
 
@@ -68,6 +71,8 @@ yarn add -D @commitlint/cli @commitlint/config-conventional husky
 - `gateway/`: Apollo Gateway service. Only for local development. Apollo Router will be used in production.
 - `services/`: Directory containing subgraph services.
   - `users/`: NestJS-based users subgraph.
+- `clients/`: Directory containing frontend applications.
+  - `next/`: Next.js-based client application.
 
 ## Minikube Workflow
 
