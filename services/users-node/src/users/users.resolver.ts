@@ -14,8 +14,14 @@ export class UsersResolver {
   }
 
   @Query(() => User, { name: 'user' })
-  findOne(@Args('email') email: string): User {
-    return this.usersService.findByEmail(email);
+  findOne(@Args('id', { type: () => Int, nullable: true }) id?: number, @Args('email', { nullable: true }) email?: string): User {
+    if (id) {
+      return this.usersService.findOne(id);
+    }
+    if (email) {
+      return this.usersService.findByEmail(email);
+    }
+    throw new Error('You must provide either an id or an email');
   }
 
   @Mutation(() => User)
@@ -24,12 +30,12 @@ export class UsersResolver {
   }
 
   @Mutation(() => User)
-  updateUser(@Args('id') id: number, @Args('updateUserInput') updateUserInput: UpdateUserInput): User {
+  updateUser(@Args('id', { type: () => Int }) id: number, @Args('updateUserInput') updateUserInput: UpdateUserInput): User {
     return this.usersService.updateUser(id, updateUserInput);
   }
 
   @Mutation(() => User)
-  deleteUser(@Args('id') id: number): User {
+  deleteUser(@Args('id', { type: () => Int }) id: number): User {
     return this.usersService.deleteUser(id);
   }
 
