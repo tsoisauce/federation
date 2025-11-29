@@ -9,7 +9,7 @@ This project implements a federated GraphQL architecture consisting of:
 - **Services**: Independent services that compose the supergraph.
   - `users`: Manages user data and authentication.
 - **Clients**: Frontend applications consuming the supergraph.
-  - `next`: A Next.js application.
+  - `next`: A Next.js application using **Apollo Client** with **Automatic Persisted Queries (APQ)**.
 
 ## Prerequisites
 
@@ -73,6 +73,8 @@ yarn add -D @commitlint/cli @commitlint/config-conventional husky
   - `users/`: NestJS-based users subgraph.
 - `clients/`: Directory containing frontend applications.
   - `next/`: Next.js-based client application.
+    - Uses `@apollo/client` for GraphQL communication.
+    - Implements **Automatic Persisted Queries (APQ)** to reduce network overhead by sending query hashes instead of full query strings.
 
 ## Minikube Workflow
 
