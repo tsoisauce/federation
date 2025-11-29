@@ -22,7 +22,7 @@ spec:
         - name: PORT
           value: "4000"
         - name: USERS_SERVICE_URL
-          value: "http://users-service:3001/graphql"
+          value: "http://users-node-service:3001/graphql"
 ---
 apiVersion: v1
 kind: Service

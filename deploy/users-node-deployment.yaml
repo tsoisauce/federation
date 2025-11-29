@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: users-service
+  name: users-node-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: users-service
+      app: users-node-service
   template:
     metadata:
       labels:
-        app: users-service
+        app: users-node-service
     spec:
       containers:
-      - name: users-service
-        image: users-service:latest
+      - name: users-node-service
+        image: users-node-service:latest
         imagePullPolicy: Never
         ports:
         - containerPort: 3001
@@ -25,10 +25,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: users-service
+  name: users-node-service
 spec:
   selector:
-    app: users-service
+    app: users-node-service
   ports:
   - protocol: TCP
     port: 3001

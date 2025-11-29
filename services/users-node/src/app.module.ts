@@ -1,8 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule,ConfigService } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloFederationDriver, ApolloFederationDriverConfig } from '@nestjs/apollo';
-import { join } from 'path';
 import { UsersModule } from './users/users.module';
 import { ApolloServerPluginInlineTraceDisabled } from '@apollo/server/plugin/disabled';
 
