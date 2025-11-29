@@ -7,12 +7,13 @@
   "private": true,
   "workspaces": [
     "gateway",
-    "services/*"
+    "services/*",
+    "clients/*"
   ],
   "scripts": {
     "install:all": "yarn",
-    "dev": "concurrently -k -n \"users-node,gateway\" -c \"red,blue\" \"yarn workspace users-node start:dev\" \"wait-on tcp:3001 && yarn workspace gateway dev\"",
-    "build": "concurrently \"yarn workspace users-node build\" \"yarn workspace gateway build\"",
+    "dev": "concurrently -k -n \"users-node,gateway,client-next\" -c \"red,blue,green\" \"yarn workspace users-node start:dev\" \"wait-on tcp:3001 && yarn workspace gateway dev\" \"yarn workspace client-next dev\"",
+    "build": "concurrently \"yarn workspace users-node build\" \"yarn workspace gateway build\" \"yarn workspace client-next build\"",
     "commit": "cz",
     "prepare": "husky install",
     "minikube:start": "minikube start --driver=docker",

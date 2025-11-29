@@ -62,3 +62,15 @@ coverage/
 .cache/
 .temp/
 .tmp/
+
+# Next.js
+.next/
+**/.next/
+out/
+**/out/
+build/
+**/build/
+.vercel
+**/.vercel
+next-env.d.ts
+**/next-env.d.ts
