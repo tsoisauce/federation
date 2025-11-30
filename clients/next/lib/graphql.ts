@@ -4,10 +4,13 @@ export const GET_USERS = gql`
   query GetUsers {
     users {
       id
+      uuid
       firstName
       lastName
       email
       bio
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -20,6 +23,9 @@ export const GET_USER = gql`
       lastName
       email
       bio
+      uuid
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -32,6 +38,9 @@ export const CREATE_USER = gql`
       lastName
       email
       bio
+      uuid
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -44,6 +53,9 @@ export const UPDATE_USER = gql`
       lastName
       email
       bio
+      uuid
+      createdAt
+      updatedAt
     }
   }
 `;

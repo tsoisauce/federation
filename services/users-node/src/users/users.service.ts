@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, ConflictException } from '@nestjs/common';
+import { randomUUID, UUID } from 'crypto';
 import { User } from './entities/user.entity';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
@@ -6,8 +7,8 @@ import { UpdateUserInput } from './dto/update-user.input';
 @Injectable()
 export class UsersService {
   private users: User[] = [
-    {id: 1, firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com', bio: 'I am John Doe'},
-    {id: 2, firstName: 'Jane', lastName: 'Doe', email: 'jane.doe@example.com', bio: 'I am Jane Doe'},
+    {id: 1, uuid: '32d82afa-9609-4691-b268-4c42f07dec8f', firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com', bio: 'I am John Doe', createdAt: new Date(), updatedAt: new Date()},
+    {id: 2, uuid: '7dab3516-e964-43d3-a8fb-fbcee20d1ac4', firstName: 'Jane', lastName: 'Doe', email: 'jane.doe@example.com', bio: 'I am Jane Doe', createdAt: new Date(), updatedAt: new Date()},
   ]
   
   private currentId = 3;
@@ -33,9 +34,16 @@ export class UsersService {
   }
 
   createUser(createUserInput: CreateUserInput): User {
+    const existingUser = this.users.find(user => user.email === createUserInput.email);
+    if (existingUser) {
+      throw new ConflictException('Email already in use');
+    }
     const user = {
       id: this.currentId++,
-      ...createUserInput
+      ...createUserInput,
+      uuid: randomUUID() as UUID,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     }
     this.users.push(user)
     return user
@@ -46,9 +54,16 @@ export class UsersService {
     if (userIndex === -1) {
       throw new Error('User not found')
     }
+    if (updateUserInput.email) {
+      const existingUser = this.users.find(user => user.email === updateUserInput.email && user.id !== id);
+      if (existingUser) {
+        throw new ConflictException('Email already in use');
+      }
+    }
     this.users[userIndex] = {
       ...this.users[userIndex],
-      ...updateUserInput
+      ...updateUserInput,
+      updatedAt: new Date(),
     }
     return this.users[userIndex]
   }
@@ -62,3 +77,5 @@ export class UsersService {
     return user
   }
 }
+
+

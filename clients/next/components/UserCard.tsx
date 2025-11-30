@@ -7,10 +7,13 @@ import { DELETE_USER, UPDATE_USER, GET_USERS } from "@/lib/graphql";
 
 interface User {
   id: number;
+  uuid: string;
   firstName: string;
   lastName: string;
   email: string;
   bio?: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export default function UserCard({ user }: { user: User }) {
@@ -96,6 +99,10 @@ export default function UserCard({ user }: { user: User }) {
         <p className="text-sm text-gray-800 dark:text-gray-300 line-clamp-3">
           {user.bio || <span className="italic text-gray-400">No bio provided</span>}
         </p>
+        <div className="mt-2 text-xs text-gray-400 dark:text-gray-500 flex flex-col gap-1">
+          <p>Created: {new Date(user.createdAt).toLocaleDateString()}</p>
+          <p>Updated: {new Date(user.updatedAt).toLocaleDateString()}</p>
+        </div>
       </div>
 
       <div className="flex justify-end gap-2 mt-4 border-t pt-3 dark:border-zinc-800">
