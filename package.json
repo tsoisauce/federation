@@ -12,8 +12,8 @@
   ],
   "scripts": {
     "install:all": "yarn",
-    "start:products-java": "cd services/products-java && ./gradlew :api:bootRun",
-    "dev": "concurrently -k -n \"users-node,products-java,gateway,client-next\" -c \"red,magenta,blue,green\" \"yarn workspace users-node start:dev\" \"yarn start:products-java\" \"wait-on tcp:3001 && yarn workspace gateway dev\" \"yarn workspace client-next dev\"",
+    "start:products": "cd services/products-java && ./gradlew :api:bootRun",
+    "dev": "concurrently -k -n \"users-node,products-java,gateway,client-next\" -c \"red,magenta,blue,green\" \"yarn workspace users-node start:dev\" \"yarn start:products\" \"wait-on tcp:3001 && yarn workspace gateway dev\" \"yarn workspace client-next dev\"",
     "build": "concurrently \"yarn workspace users-node build\" \"yarn workspace gateway build\" \"yarn workspace client-next build\"",
     "commit": "cz",
     "prepare": "husky install",

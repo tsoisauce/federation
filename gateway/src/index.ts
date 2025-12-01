@@ -11,6 +11,10 @@ async function startServer() {
           name: 'users', 
           url: process.env.USERS_SERVICE_URL || 'http://localhost:3001/graphql',
         },
+        { 
+          name: 'products', 
+          url: process.env.PRODUCTS_SERVICE_URL || 'http://localhost:3002/graphql',
+        },
       ],
     }),
   });

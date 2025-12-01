@@ -1,9 +1,34 @@
+directive @key(fields: federation__FieldSet!, resolvable: Boolean = true) repeatable on OBJECT | INTERFACE
+directive @link(url: String!, import: [String]) repeatable on SCHEMA
+scalar federation__FieldSet
+
+extend schema
+  @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key"])
+
 type Query {
     products: [Product]
 }
 
-type Product {
+type Product @key(fields: "id") {
     id: ID!
-    name: String
+    title: String
+    slug: String
+    brand: String
+    description: String
+    category: String
+    variants: [Variant]
+}
+
+type Variant {
+    id: ID!
+    status: String
+    title: String
+    displayPrice: Float
     price: Float
+    currency: String
+    sku: String
+    images: [String]
+    onHandQuantity: Int
+    committedQuantity: Int
+    availableToSellQuantity: Int
 }
