@@ -8,6 +8,7 @@ This project implements a federated GraphQL architecture consisting of:
 - **Gateway**: An Apollo Gateway that acts as the single entry point (Supergraph).
 - **Services**: Independent services that compose the supergraph.
   - `users`: Manages user data and authentication.
+  - `products`: Manages product catalog (Java Spring Boot).
 - **Clients**: Frontend applications consuming the supergraph.
   - `next`: A Next.js application using **Apollo Client** with **Automatic Persisted Queries (APQ)**.
 
@@ -34,9 +35,10 @@ yarn dev
 
 This command will:
 1. Start the `users` subgraph.
-2. Wait for the `users` service to be ready.
-3. Start the `gateway`.
-4. Start the `next` client.
+2. Start the `products` subgraph.
+3. Wait for the `users` service to be ready.
+4. Start the `gateway`.
+5. Start the `next` client.
 
 ## Development
 
@@ -70,7 +72,8 @@ yarn add -D @commitlint/cli @commitlint/config-conventional husky
 
 - `gateway/`: Apollo Gateway service. Only for local development. Apollo Router will be used in production.
 - `services/`: Directory containing subgraph services.
-  - `users/`: NestJS-based users subgraph.
+  - `users-node/`: NestJS-based users subgraph.
+  - `products-java/`: Java Spring Boot-based products subgraph.
 - `clients/`: Directory containing frontend applications.
   - `next/`: Next.js-based client application.
     - Uses `@apollo/client` for GraphQL communication.
