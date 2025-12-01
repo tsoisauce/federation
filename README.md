@@ -74,6 +74,9 @@ yarn add -D @commitlint/cli @commitlint/config-conventional husky
 - `services/`: Directory containing subgraph services.
   - `users-node/`: NestJS-based users subgraph.
   - `products-java/`: Java Spring Boot-based products subgraph.
+    - `api/`: GraphQL API entry point.
+    - `worker/`: Background worker service.
+    - `common/`: Shared logic and utilities.
 - `clients/`: Directory containing frontend applications.
   - `next/`: Next.js-based client application.
     - Uses `@apollo/client` for GraphQL communication.
