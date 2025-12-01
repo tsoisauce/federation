@@ -1,1 +1,3 @@
 rootProject.name = 'products'
+include 'worker'
+include 'common'
