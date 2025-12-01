@@ -1,10 +1,10 @@
-package com.federation.products;
+package com.federation.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ProductsApplicationTests {
+class ApiApplicationTests {
 
 	@Test
 	void contextLoads() {
